@@ -8,6 +8,22 @@ from nornir import InitNornir
 
 def main():
   """main"""
+
+  args = {
+    'core': {
+      'num_workers': 100
+    },
+    'inventory': {
+      'plugin': "nornir.plugins.inventory.simple.SimpleInventory",
+      'options': {
+        'host_file': "inventory/hosts.yml",
+        'group_file': "inventory/groups.yml"
+      }
+    }
+  }
+  nr = InitNornir(**args)
+
+  """
   nr = InitNornir(
     core={"num_workers": 100},
     inventory={
@@ -18,6 +34,7 @@ def main():
       }
     }
   )
+  """
 
   print(nr.inventory.hosts)
   print(nr.inventory.groups)
